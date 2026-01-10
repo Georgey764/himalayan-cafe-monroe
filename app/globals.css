@@ -1,29 +1,45 @@
 @import "tailwindcss";
 
 :root {
-  --background: #500913;
-  --foreground: #d4af37;
+  /* Brand Palette */
+  --color-primary: #500913; /* Deep Burgundy */
+  --color-accent: #d4af37; /* Warm Gold */
+
+  /* Semantic Mappings */
+  --background: var(--color-primary);
+  --foreground: var(--color-accent);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  /* Colors */
+  --color-primary: var(--color-primary);
+  --color-accent: var(--color-accent);
+
+  /* Create a muted accent for borders/decorations (30% opacity) */
+  --color-accent-muted: color-mix(
+    in srgb,
+    var(--color-accent),
+    transparent 70%
+  );
+
+  /* Typography */
+  --font-heading: var(--font-marcellus), serif;
+  --font-serif: var(--font-ebgaramond), serif;
   --font-sans: var(--font-raleway), sans-serif;
-  --font-mono: var(--font-ebgaramond), serif;
-  --font-marcellus: var(--font-marcellus), serif;
-  --font-ebgaramond: var(--font-ebgaramond), serif;
-  --font-raleway: var(--font-raleway), sans-serif;
 }
 
+/* Ensure Dark Mode stays consistent with Brand Colors if preferred */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--color-primary);
+    --foreground: var(--color-accent);
   }
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-raleway), sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
