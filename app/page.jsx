@@ -50,7 +50,7 @@ export default function Home() {
         fontBody={fontBody}
       />
 
-      <MenuSection fontTitle={fontTitle} fontSub={fontSub} />
+      {/* <MenuSection fontTitle={fontTitle} fontSub={fontSub} /> */}
 
       <LocationSection
         fontTitle={fontTitle}

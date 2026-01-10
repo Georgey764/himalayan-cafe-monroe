@@ -7,25 +7,15 @@ export const metadata = {
     "Casual restaurant that serves Indian, Nepali and Indo-Chinese cuisines.",
 };
 
-const cinzelDecorative = localFont({
+const marcellus = localFont({
   src: [
     {
-      path: "../public/Fonts/Cinzel_Decorative/CinzelDecorative-Regular.ttf",
+      path: "../public/Fonts/Marcellus/Marcellus-Regular.ttf",
       weight: "400",
       style: "regular",
     },
-    {
-      path: "../public/Fonts/Cinzel_Decorative/CinzelDecorative-Bold.ttf",
-      weight: "700",
-      style: "bold",
-    },
-    {
-      path: "../public/Fonts/Cinzel_Decorative/CinzelDecorative-Black.ttf",
-      weight: "900",
-      style: "black",
-    },
   ],
-  variable: "--font-cinzel",
+  variable: "--font-marcellus",
 });
 
 const ebGaramond = localFont({
@@ -64,7 +54,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${cinzelDecorative.variable} ${ebGaramond.variable} ${raleway.variable} antialiased`}
+        className={`${marcellus.variable} ${ebGaramond.variable} ${raleway.variable} antialiased`}
       >
         {children}
       </body>

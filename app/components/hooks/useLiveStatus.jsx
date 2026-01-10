@@ -1,3 +1,4 @@
+"use client";
 import { useState, useEffect } from "react";
 
 export const useLiveStatus = () => {
@@ -32,46 +33,28 @@ export const useLiveStatus = () => {
         setLiveStatus({
           isOpen: true,
           status: "OPEN NOW",
-          service: "LUNCH BUFFET + DINE-IN",
+          service: "LUNCH BUFFET",
           nextEvent: "Buffet ends at 2:00 PM",
         });
         return;
       }
 
       let closeTime = day === 5 || day === 6 ? 22 : 21;
-
       if (currentTime >= 17 && currentTime < closeTime) {
         setLiveStatus({
           isOpen: true,
           status: "OPEN NOW",
-          service: "DINING ONLY (No Buffet)",
+          service: "DINING ONLY",
           nextEvent: `Kitchen closes at ${formatNextTime(closeTime)}`,
         });
         return;
       }
 
-      if (currentTime >= 14 && currentTime < 17) {
-        setLiveStatus({
-          isOpen: false,
-          status: "CLOSED NOW",
-          service: "Preparing for Dinner",
-          nextEvent: "Dinner Service starts at 5:00 PM",
-        });
-        return;
-      }
-
-      let nextDayStatus =
-        currentTime >= closeTime
-          ? (day + 1) % 7 === 2
-            ? "Opening Wednesday at 11:00 AM"
-            : "Opening tomorrow at 11:00 AM"
-          : "Opening today at 11:00 AM";
-
       setLiveStatus({
         isOpen: false,
         status: "CLOSED NOW",
         service: "See You Soon",
-        nextEvent: nextDayStatus,
+        nextEvent: "Buffet at 11:00 AM | Dinner at 5:00 PM",
       });
     };
 
