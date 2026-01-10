@@ -1,14 +1,25 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { Clock, Sun, Moon, Circle, MapPin } from "lucide-react";
 import { useLiveStatus } from "./hooks/useLiveStatus";
 import Image from "next/image";
 
 const Hero = () => {
   const liveStatus = useLiveStatus();
+
+  // Memoize date checks for performance
+  const isWeekend = useMemo(() => {
+    const day = new Date().getDay();
+    return day === 5 || day === 6; // Fri or Sat
+  }, []);
+
   const isLunch = liveStatus.service === "LUNCH BUFFET";
   const isDineIn = liveStatus.service === "DINE IN";
+
+  // Google Maps Deep Link (Better for mobile/AdBlockers)
+  const mapUrl =
+    "https://www.google.com/maps/dir/?api=1&destination=Himalayan+Cafe+Monroe+LA";
 
   return (
     <section className="relative min-h-screen flex items-center pt-28 pb-16 lg:pt-28 overflow-hidden bg-primary">
@@ -22,8 +33,6 @@ const Hero = () => {
           sizes="100vw"
           className="object-cover scale-105 opacity-40 transition-transform duration-1000"
         />
-
-        {/* Layered Gradient Overlay using semantic primary color */}
         <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/20 to-primary lg:bg-gradient-to-r lg:from-primary lg:via-primary/80 lg:to-transparent" />
       </div>
 
@@ -65,17 +74,19 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6">
             <a
               href="tel:+13186003439"
-              className="w-full sm:w-auto bg-accent text-primary px-10 py-5 font-sans text-[11px] font-black uppercase tracking-widest hover:bg-white transition-all shadow-2xl"
+              className="w-full sm:w-auto bg-accent text-primary px-10 py-5 font-sans text-[11px] font-black uppercase tracking-widest hover:bg-white transition-all shadow-2xl text-center active:scale-95"
             >
               Order Now
             </a>
             <a
-              href="#location"
+              href={mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group flex items-center space-x-3 text-white font-sans text-[11px] font-black uppercase tracking-widest"
             >
               <MapPin size={16} className="text-accent" />
               <span className="border-b border-white/20 group-hover:border-accent transition-all pb-1">
-                Monroe, LA
+                Monroe, Louisiana
               </span>
             </a>
           </div>
@@ -83,7 +94,7 @@ const Hero = () => {
 
         {/* Right: The Service Timeline Box */}
         <div className="lg:col-span-5 z-20">
-          <div className="bg-black/40 backdrop-blur-2xl p-8 md:p-12 border border-white/10 rounded-sm shadow-2xl relative overflow-hidden">
+          <div className="bg-black/60 backdrop-blur-2xl p-8 md:p-12 border border-white/10 rounded-sm shadow-2xl relative overflow-hidden">
             <h3 className="text-lg mb-12 font-heading text-white/40 flex items-center tracking-[0.3em] uppercase">
               <Clock className="mr-4 text-accent" size={20} /> Today&apos;s
               Schedule
@@ -98,7 +109,10 @@ const Hero = () => {
               >
                 <div className="flex justify-between items-end mb-4 font-sans uppercase tracking-widest">
                   <div className="flex items-center space-x-3">
-                    <Sun size={18} className="text-accent" />
+                    <Sun
+                      size={18}
+                      className={isLunch ? "text-accent" : "text-white"}
+                    />
                     <span className="text-[11px] font-black text-white">
                       Lunch Buffet
                     </span>
@@ -112,7 +126,7 @@ const Hero = () => {
                     className={`h-full bg-accent transition-all duration-1000 shadow-[0_0_10px_#d4af37] ${
                       isLunch ? "w-full" : "w-0"
                     }`}
-                  ></div>
+                  />
                 </div>
               </div>
 
@@ -124,23 +138,24 @@ const Hero = () => {
               >
                 <div className="flex justify-between items-end mb-4 font-sans uppercase tracking-widest">
                   <div className="flex items-center space-x-3">
-                    <Moon size={18} className="text-accent" />
+                    <Moon
+                      size={18}
+                      className={isDineIn ? "text-accent" : "text-white"}
+                    />
                     <span className="text-[11px] font-black text-white">
                       Dine-In Dinner
                     </span>
                   </div>
-                  <div className="text-right">
-                    <span className="text-2xl font-serif italic text-accent normal-case tracking-normal leading-none block">
-                      5 pm — 9 pm
-                    </span>
-                  </div>
+                  <span className="text-2xl font-serif italic text-accent normal-case tracking-normal">
+                    5 pm — {isWeekend ? "10 pm" : "9 pm"}
+                  </span>
                 </div>
                 <div className="h-[2px] w-full bg-white/10 rounded-full overflow-hidden">
                   <div
                     className={`h-full bg-accent transition-all duration-1000 shadow-[0_0_10px_#d4af37] ${
                       isDineIn ? "w-full" : "w-0"
                     }`}
-                  ></div>
+                  />
                 </div>
               </div>
             </div>
@@ -155,7 +170,11 @@ const Hero = () => {
                   liveStatus.isOpen ? "text-accent" : "text-white/60"
                 }`}
               >
-                {liveStatus.isOpen ? liveStatus.service : "Closed Now"}
+                {liveStatus.isOpen
+                  ? liveStatus.service
+                  : liveStatus.status === "CLOSED TODAY"
+                  ? "Tuesday Rest Day"
+                  : "Closed Now"}
               </span>
             </div>
           </div>

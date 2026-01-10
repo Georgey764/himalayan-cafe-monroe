@@ -37,7 +37,7 @@ const Footer = () => {
           <div className="flex items-center space-x-3 mt-2">
             <div className="h-[px] w-8 bg-accent-muted"></div>
             <span className="text-[10px] tracking-[0.6em] text-white/40 font-sans font-light uppercase">
-              Kitchen
+              Cafe
             </span>
             <div className="h-[px] w-8 bg-accent-muted"></div>
           </div>
@@ -66,7 +66,7 @@ const Footer = () => {
         {/* Credits & Copyright */}
         <div className="w-full pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-[9px] font-sans font-bold uppercase tracking-[0.4em] text-white/30">
-            © {new Date().getFullYear()} Himalayan Kitchen & Cafe
+            © {new Date().getFullYear()} Himalayan Cafe
           </p>
 
           <div className="flex space-x-8 text-[9px] font-sans font-bold uppercase tracking-[0.2em] text-white/20">
