@@ -3,7 +3,10 @@ import Link from "next/link";
 
 export default function AboutSection() {
   return (
-    <section className="py-24 px-6 md:px-12 lg:px-24 bg-primary overflow-hidden">
+    <section
+      id="about"
+      className="py-24 px-6 md:px-12 lg:px-24 bg-primary overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
           {/* Image Side - Spans 5 columns */}
