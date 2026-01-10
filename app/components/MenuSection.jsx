@@ -1,6 +1,6 @@
 import React from "react";
 
-const MenuSection = ({ fontTitle, fontSub }) => {
+const MenuSection = () => {
   const menuItems = [
     {
       category: "Indian Classics",
@@ -40,53 +40,64 @@ const MenuSection = ({ fontTitle, fontSub }) => {
   ];
 
   return (
-    <section id="menu" className="py-32 px-6 bg-[#121212] text-white">
+    <section id="menu" className="py-32 px-6 bg-[#500913] text-white">
       <div className="max-w-[1000px] mx-auto">
-        <h2
-          className="text-5xl md:text-7xl mb-12 text-center"
-          style={fontTitle}
-        >
-          Essential <span className="text-[#d4af37]">Plates</span>
-        </h2>
+        {/* Section Header */}
+        <div className="text-center mb-24">
+          <h2 className="text-5xl md:text-7xl font-cinzel leading-tight">
+            Essential <span className="text-[#d4af37]">Plates</span>
+          </h2>
+          <div className="flex justify-center items-center mt-4 space-x-4">
+            <div className="w-12 h-[1px] bg-[#d4af37]/40"></div>
+            <span className="text-[10px] uppercase tracking-[0.4em] font-raleway text-[#d4af37]">
+              Curated Selection
+            </span>
+            <div className="w-12 h-[1px] bg-[#d4af37]/40"></div>
+          </div>
+        </div>
+
         <div className="space-y-24">
           {menuItems.map((section, idx) => (
-            <div key={idx}>
-              <h3
-                className="text-2xl tracking-[0.3em] uppercase mb-12"
-                style={fontTitle}
-              >
+            <div key={idx} className="relative">
+              {/* Category Heading */}
+              <h3 className="text-2xl tracking-[0.4em] uppercase mb-12 font-cinzel text-[#d4af37] border-b border-[#d4af37]/20 pb-4 inline-block">
                 {section.category}
               </h3>
-              <div className="grid gap-y-12">
+
+              <div className="grid gap-y-10">
                 {section.items.map((item, i) => (
-                  <div key={i} className="group border-b border-white/5 pb-4">
-                    <div className="flex justify-between items-end">
-                      <div>
-                        <h4
-                          className="text-xl md:text-2xl group-hover:text-[#d4af37] transition-all"
-                          style={fontTitle}
-                        >
-                          {item.name}
-                        </h4>
-                        <p
-                          className="text-sm opacity-50 italic"
-                          style={fontSub}
-                        >
-                          {item.desc}
-                        </p>
-                      </div>
-                      <span
-                        className="text-xl text-[#d4af37]"
-                        style={fontTitle}
-                      >
-                        ${item.price}
+                  <div key={i} className="group flex flex-col space-y-1">
+                    <div className="flex justify-between items-baseline">
+                      {/* Dish Name */}
+                      <h4 className="text-xl md:text-2xl font-cinzel group-hover:text-[#d4af37] transition-colors duration-300 pr-4 bg-[#500913] z-10">
+                        {item.name}
+                      </h4>
+
+                      {/* Decorative Leader Line */}
+                      <div className="flex-1 border-b border-dotted border-white/20 mb-1.5 mx-2"></div>
+
+                      {/* Price */}
+                      <span className="text-xl font-cinzel text-[#d4af37] pl-4 bg-[#500913] z-10">
+                        {item.price}
                       </span>
                     </div>
+
+                    {/* Description */}
+                    <p className="text-sm md:text-base opacity-60 font-ebgaramond italic max-w-xl">
+                      {item.desc}
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Footer Note */}
+        <div className="mt-24 text-center">
+          <p className="font-ebgaramond italic opacity-50 text-sm">
+            Please inform your server of any dietary restrictions or allergies.
+          </p>
         </div>
       </div>
     </section>

@@ -1,83 +1,179 @@
-import React from "react";
-import { Phone, MapPin, Circle } from "lucide-react";
+import { ArrowRight, Sun, Moon, Circle, MapPin } from "lucide-react";
 import { useLiveStatus } from "./hooks/useLiveStatus";
 
 const Hero = () => {
   const liveStatus = useLiveStatus();
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-12 overflow-hidden bg-[#500913]">
-      {/* Background Layer */}
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-[#500913] selection:bg-[#d4af37] selection:text-[#500913]">
+      {/* Background Layers */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-[#500913] z-10"></div>
         <img
           src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&q=80&w=2000"
           alt="Authentic Spices"
-          className="w-full h-full object-cover scale-105 opacity-50"
+          className="w-full h-full object-cover scale-105 opacity-20"
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#500913] via-[#500913]/90 to-transparent"></div>
       </div>
 
-      <div className="relative z-20 w-full max-w-4xl px-6 text-center">
-        {/* Main Status Card */}
-        <div className="bg-black/40 backdrop-blur-xl border border-[#d4af37]/20 p-8 md:p-12 shadow-2xl relative overflow-hidden">
-          {/* Top Status Bar */}
-          <div
-            className={`absolute top-0 left-0 w-full h-1.5 transition-colors duration-500 ${
-              liveStatus.isOpen ? "bg-green-500" : "bg-red-500"
-            }`}
-          ></div>
-
-          <div className="flex flex-col items-center mb-6">
-            {/* Live Indicator Pill */}
-            <div
-              className={`flex items-center space-x-3 mb-6 px-5 py-1.5 rounded-full border ${
-                liveStatus.isOpen
-                  ? "bg-green-500/10 border-green-500/20 text-green-400"
-                  : "bg-red-500/10 border-red-500/20 text-red-400"
-              }`}
-            >
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center pt-20">
+        {/* Left Column: Branding & Primary Status */}
+        <div className="lg:col-span-7">
+          <div className="flex items-center space-x-4 mb-6">
+            <div className="relative flex items-center justify-center">
               <Circle
                 size={8}
-                fill="currentColor"
+                fill={liveStatus.isOpen ? "#22c55e" : "#ef4444"}
                 className={liveStatus.isOpen ? "animate-pulse" : ""}
               />
-              <span className="text-sm md:text-base font-bold tracking-[0.4em] uppercase font-raleway">
-                {liveStatus.status}
-              </span>
+              {liveStatus.isOpen && (
+                <Circle
+                  size={18}
+                  className="absolute animate-ping opacity-30 text-green-500"
+                />
+              )}
             </div>
+            <span className="font-raleway text-[10px] font-black tracking-[0.5em] uppercase text-[#d4af37]">
+              {liveStatus.status}
+            </span>
+          </div>
 
-            {/* Dynamic Titles using Theme Fonts */}
-            <h1 className="text-3xl md:text-6xl lg:text-6xl leading-tight mb-3 text-white font-marcellus">
+          <h1 className="text-6xl md:text-7xl lg:text-8xl font-marcellus text-white leading-[0.85] mb-8">
+            Himalayan <span className="text-[#d4af37] block">Kitchen</span>
+          </h1>
+
+          <div className="space-y-6 mb-12">
+            <h2 className="text-2xl md:text-4xl font-marcellus text-white/90">
               {liveStatus.service}
-            </h1>
-
-            <p className="text-xl md:text-3xl italic text-[#d4af37] font-ebgaramond">
+            </h2>
+            <p className="text-lg md:text-xl font-ebgaramond italic text-[#d4af37] border-l-2 border-[#d4af37]/30 pl-6">
               {liveStatus.nextEvent}
             </p>
           </div>
 
-          {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+          <div className="flex flex-wrap gap-6">
             <a
-              href="tel:+13185550199"
-              className="bg-[#d4af37] hover:bg-[#c19b2e] text-[#500913] px-10 py-5 font-black tracking-[0.2em] uppercase text-xs flex items-center justify-center transition-all duration-300 shadow-xl"
+              href="tel:+13186003439"
+              className="bg-[#d4af37] text-[#500913] px-10 py-5 font-raleway text-[10px] font-black uppercase tracking-[0.3em] hover:bg-white transition-all duration-300 shadow-xl"
             >
-              <Phone size={16} className="mr-3" /> Call to Order
+              Order: 318.600.3439
             </a>
-
             <a
               href="#location"
-              className="border border-white/30 hover:bg-white/10 text-white px-10 py-5 font-bold tracking-[0.2em] uppercase text-xs flex items-center justify-center transition-all duration-300"
+              className="group flex items-center space-x-4 px-2 text-white font-raleway text-[10px] font-black uppercase tracking-[0.3em] border-b border-white/10 hover:border-[#d4af37] transition-all"
             >
-              Get Directions <MapPin size={16} className="ml-3" />
+              <MapPin size={14} className="text-[#d4af37]" />
+              <span>Monroe, LA</span>
+              <ArrowRight
+                size={14}
+                className="group-hover:translate-x-2 transition-transform text-[#d4af37]"
+              />
             </a>
           </div>
         </div>
 
-        {/* Subtle Decorative Sub-text */}
-        <p className="mt-8 text-white/40 text-[10px] uppercase tracking-[0.5em] font-raleway">
-          Experience the Heights of Himalayan Flavor
-        </p>
+        {/* Right Column: Complete Schedule Data */}
+        <div className="lg:col-span-5">
+          <div className="bg-black/40 backdrop-blur-2xl border border-white/10 p-8 md:p-10 mb-8 relative">
+            {/* Accent Corner */}
+            <div className="absolute top-0 right-0 w-12 h-12 border-t border-r border-[#d4af37]/30"></div>
+
+            <h3 className="text-white font-marcellus text-lg mb-10 tracking-[0.2em] uppercase flex items-center">
+              <span className="w-8 h-[1px] bg-[#d4af37] mr-4"></span>
+              Service Hours
+            </h3>
+
+            <div className="space-y-12">
+              {/* Lunch Data Block */}
+              <div
+                className={`relative transition-all duration-700 ${
+                  liveStatus.service === "LUNCH BUFFET"
+                    ? "scale-105 opacity-100"
+                    : "opacity-40 scale-100"
+                }`}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center space-x-4">
+                    <Sun size={18} className="text-[#d4af37]" />
+                    <h4 className="font-marcellus text-white text-xl uppercase tracking-widest">
+                      Lunch
+                    </h4>
+                  </div>
+                  <span className="text-[9px] font-raleway font-black text-[#d4af37] uppercase tracking-widest">
+                    {liveStatus.service === "LUNCH BUFFET" ? "Active" : ""}
+                  </span>
+                </div>
+                <div className="flex items-baseline space-x-2 font-ebgaramond italic text-3xl text-white pl-9">
+                  <span>11:00</span>
+                  <span className="text-xs font-raleway not-italic uppercase opacity-50 tracking-tighter">
+                    am
+                  </span>
+                  <span className="mx-2 text-white/20">—</span>
+                  <span>2:00</span>
+                  <span className="text-xs font-raleway not-italic uppercase opacity-50 tracking-tighter">
+                    pm
+                  </span>
+                </div>
+                <p className="pl-9 mt-2 text-[10px] font-raleway uppercase tracking-[0.2em] text-white/40 font-bold">
+                  Authentic Buffet Service
+                </p>
+              </div>
+
+              {/* Dinner Data Block */}
+              <div
+                className={`relative transition-all duration-700 ${
+                  liveStatus.service === "DINE IN"
+                    ? "scale-105 opacity-100"
+                    : "opacity-40 scale-100"
+                }`}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center space-x-4">
+                    <Moon size={18} className="text-[#d4af37]" />
+                    <h4 className="font-marcellus text-white text-xl uppercase tracking-widest">
+                      Dine In
+                    </h4>
+                  </div>
+                  <span className="text-[9px] font-raleway font-black text-[#d4af37] uppercase tracking-widest">
+                    {liveStatus.service === "DINE IN" ? "Active" : ""}
+                  </span>
+                </div>
+                <div className="flex items-baseline space-x-2 font-ebgaramond italic text-3xl text-white pl-9">
+                  <span>5:00</span>
+                  <span className="text-xs font-raleway not-italic uppercase opacity-50 tracking-tighter">
+                    pm
+                  </span>
+                  <span className="mx-2 text-white/20">—</span>
+                  <span>
+                    {new Date().getDay() === 5 || new Date().getDay() === 6
+                      ? "10:00"
+                      : "9:00"}
+                  </span>
+                  <span className="text-xs font-raleway not-italic uppercase opacity-50 tracking-tighter">
+                    pm
+                  </span>
+                </div>
+                <p className="pl-9 mt-2 text-[10px] font-raleway uppercase tracking-[0.2em] text-white/40 font-bold">
+                  Chef&apos;s Special Menu
+                </p>
+              </div>
+            </div>
+
+            {/* Subtle Hook Data Footer */}
+            <div className="mt-12 pt-6 border-t border-white/5 flex flex-col items-center">
+              <p className="text-[9px] font-raleway uppercase tracking-[0.4em] text-white/30 mb-2">
+                Current Protocol
+              </p>
+              <div className="flex items-center space-x-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#d4af37]"></span>
+                <span className="text-[10px] font-black text-white tracking-widest uppercase">
+                  {liveStatus.status}
+                </span>
+                <span className="h-1.5 w-1.5 rounded-full bg-[#d4af37]"></span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

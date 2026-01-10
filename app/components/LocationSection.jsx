@@ -1,5 +1,12 @@
 import React from "react";
-import { Clock, MapPin, Phone, ExternalLink } from "lucide-react";
+import {
+  Clock,
+  MapPin,
+  Phone,
+  ExternalLink,
+  Calendar,
+  Circle,
+} from "lucide-react";
 import { useLiveStatus } from "./hooks/useLiveStatus";
 
 const LocationSection = () => {
@@ -33,7 +40,7 @@ const LocationSection = () => {
                 Find Us
               </h4>
               <a
-                href="https://maps.app.goo.gl/6sTJAsuh8NvYFVLN7"
+                href="https://www.google.com/maps/search/?api=1&query=3600+Desiard+St+Monroe+LA"
                 target="_blank"
                 rel="noreferrer"
                 className="group block"
@@ -69,74 +76,92 @@ const LocationSection = () => {
           </div>
         </div>
 
-        {/* Right Side: Hours Card */}
+        {/* Right Side: Hours Card with Live Feedback */}
         <div className="bg-[#500913] text-white p-10 md:p-16 shadow-[0_20px_50px_rgba(80,9,19,0.3)] relative overflow-hidden rounded-sm">
           {/* Subtle Texture Overlay */}
           <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
 
-          <h3 className="text-3xl mb-12 flex items-center font-marcellus relative z-10">
-            <Clock className="mr-4 text-[#d4af37]" size={28} /> Service Hours
-          </h3>
+          <div className="flex justify-between items-start relative z-10 mb-12">
+            <h3 className="text-3xl flex items-center font-marcellus">
+              <Clock className="mr-4 text-[#d4af37]" size={28} /> Service Hours
+            </h3>
 
-          <div className="space-y-10 relative z-10">
-            <div className="flex justify-between border-b border-white/10 pb-8 items-end">
+            {/* Live Indicator Pill */}
+            <div
+              className={`flex items-center space-x-2 px-3 py-1 rounded-full border text-[10px] font-black tracking-widest uppercase transition-all duration-500 ${
+                liveStatus.isOpen
+                  ? "border-green-500/30 bg-green-500/10 text-green-400"
+                  : "border-white/10 bg-white/5 text-white/40"
+              }`}
+            >
+              <Circle
+                size={8}
+                fill="currentColor"
+                className={liveStatus.isOpen ? "animate-pulse" : ""}
+              />
+              <span>{liveStatus.isOpen ? "Open" : "Closed"}</span>
+            </div>
+          </div>
+
+          <div className="space-y-10 relative z-10 font-raleway">
+            <div className="flex flex-col md:flex-row justify-between border-b border-white/10 pb-8 gap-6">
               <div className="space-y-1">
                 <span className="font-black uppercase text-[10px] tracking-[0.3em] text-[#d4af37]">
-                  Weekly
+                  Service Days
                 </span>
-                <p className="text-xl font-raleway font-bold">Wed — Mon</p>
+                <p className="text-xl font-bold">Wednesday — Monday</p>
+                <p className="text-xs italic font-ebgaramond opacity-60">
+                  *Rest Day: Tuesday
+                </p>
               </div>
-              <div className="text-right space-y-2">
-                <div className="flex flex-col">
-                  <span className="text-[9px] uppercase tracking-tighter opacity-50 mb-1">
-                    Lunch
+
+              <div className="text-right space-y-4">
+                <div
+                  className={`flex flex-col transition-opacity duration-500 ${
+                    liveStatus.service === "LUNCH BUFFET"
+                      ? "opacity-100"
+                      : "opacity-40"
+                  }`}
+                >
+                  <span className="text-[9px] uppercase tracking-widest mb-1 font-black">
+                    Lunch Buffet
                   </span>
-                  <p className="text-2xl font-ebgaramond italic text-[#d4af37] leading-none">
-                    11:00{" "}
-                    <span className="text-sm uppercase not-italic opacity-70">
-                      am
-                    </span>{" "}
-                    — 2:00{" "}
-                    <span className="text-sm uppercase not-italic opacity-70">
-                      pm
-                    </span>
+                  <p className="text-xl font-ebgaramond italic text-[#d4af37] leading-none">
+                    11:00 am — 2:00 pm
                   </p>
                 </div>
-                <div className="flex flex-col pt-2">
-                  <span className="text-[9px] uppercase tracking-tighter opacity-50 mb-1">
-                    Dinner
+
+                <div
+                  className={`flex flex-col transition-opacity duration-500 ${
+                    liveStatus.service === "DINE IN"
+                      ? "opacity-100"
+                      : "opacity-40"
+                  }`}
+                >
+                  <span className="text-[9px] uppercase tracking-widest mb-1 font-black">
+                    Dinner Dine-In
                   </span>
-                  <p className="text-xl font-ebgaramond italic opacity-80 leading-none">
-                    5:00{" "}
-                    <span className="text-sm uppercase not-italic opacity-70">
-                      pm
-                    </span>{" "}
-                    — 9:00{" "}
-                    <span className="text-sm uppercase not-italic opacity-70">
-                      pm
-                    </span>
-                  </p>
+                  <div className="space-y-1">
+                    <p className="text-xl font-ebgaramond italic leading-none">
+                      Sun — Thu: <span className="text-[#d4af37]">9:00 pm</span>
+                    </p>
+                    <p className="text-xl font-ebgaramond italic leading-none">
+                      Fri & Sat:{" "}
+                      <span className="text-[#d4af37]">10:00 pm</span>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Current Status Badge */}
-          <div className="mt-12 flex items-center justify-between bg-black/30 p-6 border border-white/5">
-            <div className="flex items-center space-x-3">
-              <div
-                className={`w-2 h-2 rounded-full ${
-                  liveStatus.isOpen
-                    ? "bg-green-500 animate-pulse"
-                    : "bg-red-500"
-                }`}
-              ></div>
-              <span className="text-[10px] uppercase tracking-[0.4em] font-bold opacity-60">
-                Status
-              </span>
-            </div>
-            <p className="text-lg font-marcellus tracking-[0.2em] text-[#d4af37]">
+          {/* Dynamic Status Display Footer */}
+          <div className="mt-12 flex flex-col items-center justify-center bg-black/30 p-6 border border-white/5 space-y-2">
+            <p className="text-[10px] font-black tracking-[0.4em] text-[#d4af37] uppercase">
               {liveStatus.status}
+            </p>
+            <p className="text-sm font-marcellus tracking-widest text-white uppercase text-center">
+              {liveStatus.nextEvent}
             </p>
           </div>
         </div>
