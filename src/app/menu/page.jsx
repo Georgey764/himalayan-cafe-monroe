@@ -89,7 +89,7 @@ export default function HimalayanMenu() {
       </header>
 
       {/* Sticky Filter Bar */}
-      <div className="sticky top-[68px] z-40 bg-primary/80 backdrop-blur-2xl border-y border-white/5">
+      <div className="sticky top-[60px] md:top-[68px] z-40 bg-primary/80 backdrop-blur-2xl border-y border-white/5">
         <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <nav className="flex items-center space-x-8 overflow-x-auto no-scrollbar scroll-smooth">
             {[
