@@ -14,9 +14,11 @@ const MobileMenu = ({ setIsMenuOpen }) => {
   }, []);
 
   const navLinks = [
-    { label: "Buffet", href: "#buffet", sub: "Discover" },
+    { label: "Menu", href: "/menu", sub: "Varieties" },
+    { label: "Catering", href: "/catering", sub: "Service" },
+    { label: "Buffet", href: "/#buffet", sub: "Discover" },
     { label: "Our Story", href: "/about", sub: "About" },
-    { label: "Visit Us", href: "#location", sub: "Location" },
+    { label: "Visit Us", href: "/#location", sub: "Location" },
   ];
 
   return (
@@ -49,7 +51,7 @@ const MobileMenu = ({ setIsMenuOpen }) => {
       </div>
 
       {/* Navigation Links */}
-      <nav className="flex-1 flex flex-col justify-center space-y-10 relative z-10">
+      <nav className="overflow-y-scroll flex-1 pt-24 pb-6 flex flex-col justify-center space-y-10 relative z-10">
         {navLinks.map((link) => (
           <div key={link.label} className="space-y-1">
             <p className="text-[10px] uppercase tracking-[0.5em] text-white/30 font-sans font-bold">
@@ -58,7 +60,7 @@ const MobileMenu = ({ setIsMenuOpen }) => {
             <a
               href={link.href}
               onClick={() => setIsMenuOpen(false)}
-              className="block text-4xl tracking-widest uppercase font-heading hover:text-accent transition-colors"
+              className="block text-2xl tracking-widest uppercase font-heading hover:text-accent transition-colors"
             >
               {link.label}
             </a>
