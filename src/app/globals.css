@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  /* Brand Palette */
+  --color-primary: #6d101e; /* Deep Burgundy */
+  --color-accent: #d4af37; /* Warm Gold */
+
+  /* Semantic Mappings */
+  --background: var(--color-primary);
+  --foreground: var(--color-accent);
+}
+
+@theme inline {
+  /* Existing Colors */
+  --color-primary: var(--color-primary);
+  --color-accent: var(--color-accent);
+
+  /* New Supporting Colors */
+  --color-parchment: #f9f4e8;
+  --color-forest: #1b261d;
+  --color-midnight: #101820;
+
+  /* Modern Neutral for UI elements */
+  --color-surface: color-mix(in srgb, var(--color-primary), white 5%);
+
+  /* Semantic Mappings */
+  --color-success: #8a9a5b;
+  --color-border-gold: color-mix(in srgb, var(--color-accent), transparent 50%);
+}
+
+/* Ensure Dark Mode stays consistent with Brand Colors if preferred */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--color-primary);
+    --foreground: var(--color-accent);
+  }
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes slow-zoom {
+  0% { transform: scale(1.0); }
+  100% { transform: scale(1.1); }
+}
+
+.animate-slow-zoom {
+  animation: slow-zoom 20s ease-in-out infinite alternate;
+}

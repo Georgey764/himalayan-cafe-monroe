@@ -3,6 +3,7 @@
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
+    "baseUrl": ".", 
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -18,8 +19,8 @@
         "name": "next"
       }
     ],
-    "paths": {
-      "@/*": ["./*"]
+     "paths": {
+      "@/*": ["./src/*"] 
     }
   },
   "include": [
@@ -29,8 +30,8 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts",
-    "app/layout.jsx",
-    "app/page.jsx"
+    "src/app/layout.jsx",
+    "src/app/page.jsx"
   ],
   "exclude": ["node_modules"]
 }
