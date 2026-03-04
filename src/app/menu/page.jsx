@@ -81,10 +81,10 @@ export default function HimalayanMenu() {
             Monroe, Louisiana
           </p>
         </div>
-        <div className="font-mono px-12 pt-12 text-secondary">
-          The menu displayed here is tentative and may not accurately reflect
-          the final offerings, as the website is currently under refinement.
-          Please refer to it only for a general idea of pricing.
+        <div className="text-white/60 font-sans px-12 pt-12 text-secondary">
+          The menu displayed here is tentative and may have inconsistencies as
+          the website is still under refinement. Please refer this as a general
+          guide only.
         </div>
       </header>
 
