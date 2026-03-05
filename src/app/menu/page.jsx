@@ -81,11 +81,6 @@ export default function HimalayanMenu() {
             Monroe, Louisiana
           </p>
         </div>
-        <div className="text-white/60 font-sans px-12 pt-12 text-secondary">
-          The menu displayed here is tentative and may have inconsistencies as
-          the website is still under refinement. Please refer this as a general
-          guide only.
-        </div>
       </header>
 
       {/* Sticky Filter Bar */}
@@ -98,6 +93,7 @@ export default function HimalayanMenu() {
               "Main Entrees",
               "Momo (Dumplings)",
               "Sides",
+              "Drinks",
               "Desserts",
             ].map((cat) => (
               <button

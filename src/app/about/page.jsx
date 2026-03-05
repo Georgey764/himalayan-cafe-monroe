@@ -13,8 +13,8 @@ export default function AboutPage() {
       {/* Hero Section - Increased height and centered typography */}
       <section className="relative h-[75vh] flex items-center justify-center overflow-hidden border-b border-accent/10">
         <Image
-          src="/images/background.avif"
-          alt="Himalayan Cafe Atmosphere"
+          src="/images/about/cooking.jpg"
+          alt="Himalayan Cafe Cooking"
           fill
           className="object-cover opacity-30 scale-105"
           priority
@@ -88,7 +88,7 @@ export default function AboutPage() {
 
             <div className="relative aspect-[3/4] shadow-2xl group overflow-hidden border border-accent/20">
               <Image
-                src="/images/interior.webp"
+                src="/images/about/cooking.jpg"
                 alt="Authentic Himalayan Cooking"
                 fill
                 className="object-cover transition-transform duration-1000 group-hover:scale-110"

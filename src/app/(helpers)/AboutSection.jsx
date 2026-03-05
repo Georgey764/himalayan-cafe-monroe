@@ -15,8 +15,8 @@ export default function AboutSection() {
             {/* Main Image */}
             <div className="relative z-10 w-4/5 aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl border border-white/5 group">
               <Image
-                src="/images/interior.webp"
-                alt="Himalayan Cafe Interior"
+                src="/images/about/peak.jpg"
+                alt="Mountain peak in Nepal"
                 fill
                 className="object-cover transition-transform duration-[2s] group-hover:scale-110"
               />
@@ -26,8 +26,8 @@ export default function AboutSection() {
             {/* Secondary Overlapping Image (The Food/Detail) */}
             <div className="absolute -bottom-12 -right-4 w-1/2 aspect-square rounded-2xl overflow-hidden shadow-2xl border-4 border-primary z-20 hidden md:block group/small">
               <Image
-                src="/images/menu/momo-dumplings/chicken-steam-momo.jpg"
-                alt="Hand-folded Momos"
+                src="/images/about/cooking.jpg"
+                alt="Cooking inside himalayan cafe"
                 fill
                 className="object-cover transition-transform duration-700 group-hover/small:scale-110"
               />

@@ -22,8 +22,8 @@ const Hero = () => {
       {/* Background - Soft & Atmospheric */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/background.avif"
-          alt="Himalayan Cafe"
+          src="/images/about/peak.jpg"
+          alt="Mountain Peak in Nepal"
           fill
           priority
           className="object-cover opacity-20 scale-105"

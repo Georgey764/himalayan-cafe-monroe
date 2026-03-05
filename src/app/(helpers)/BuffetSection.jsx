@@ -23,9 +23,9 @@ const BuffetSection = () => {
               </div>
 
               <h2 className="text-6xl md:text-7xl font-heading leading-[0.9] text-primary tracking-tighter">
-                A Daily Ritual <br />
+                Our Buffet <br />
                 <span className="text-accent italic font-serif lowercase tracking-normal">
-                  of Flavor.
+                  The daily Gathering.
                 </span>
               </h2>
 
@@ -38,12 +38,10 @@ const BuffetSection = () => {
             {/* Buffet Features List */}
             <div className="grid grid-cols-2 gap-4">
               {[
-                "Traditional Dal Bhat",
                 "Signature Curries",
                 "Fresh Tandoori Naan",
                 "Himalayan Salads",
                 "Vegetarian Delights",
-                "Mango Lassi Specials",
               ].map((item) => (
                 <div key={item} className="flex items-center space-x-3">
                   <div className="p-1 rounded-full bg-accent/20">
@@ -93,8 +91,8 @@ const BuffetSection = () => {
               {/* Main Large Image */}
               <div className="col-span-8 relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl group">
                 <Image
-                  src="/images/buffet_one.png"
-                  alt="Himalayan Lunch Buffet"
+                  src="/images/buffet/buffet-side-view.avif"
+                  alt="Himalayan Buffet top view"
                   fill
                   className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
@@ -103,7 +101,7 @@ const BuffetSection = () => {
               {/* Overlapping Small Image */}
               <div className="col-span-6 col-start-7 -mt-32 relative aspect-square rounded-3xl overflow-hidden shadow-2xl border-[12px] border-[#FAF9F6] group">
                 <Image
-                  src="/images/buffet_two.avif"
+                  src="/images/buffet/buffet_one.png"
                   alt="Buffet Selection"
                   fill
                   className="object-cover transition-transform duration-1000 group-hover:scale-110"
