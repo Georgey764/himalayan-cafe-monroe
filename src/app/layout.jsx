@@ -2,6 +2,7 @@ import Footer from "./(helpers)/Footer";
 import Navbar from "./(helpers)/Navbar";
 import "./globals.css";
 import localFont from "next/font/local";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata = {
   // 1. Basic SEO (Local & Cuisine Focused)
@@ -199,6 +200,7 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
       </body>
+      <GoogleAnalytics gaId="G-03K1HXSG2K" />
     </html>
   );
 }
