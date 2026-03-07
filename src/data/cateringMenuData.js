@@ -27,7 +27,7 @@ export const CATERING_MENU = {
         { name: "Chicken 65", prices: { Sm: 40, Md: 70, Lg: 130 } },
         { name: "Chicken Pakoda", prices: { Sm: 40, Md: 70, Lg: 130 } },
         { name: "Chicken Sekuwa", prices: { Sm: 45, Md: 80, Lg: 140 } },
-        { name: "Chicken Roast", prices: { Sm: 40, Md: 70, Lg: 130 } },
+        { name: "Chicken Roast", prices: { Sm: 40, Md: 70, Lg: 150 } },
         { name: "Chicken Choilla", prices: { Sm: 45, Md: 80, Lg: 140 } },
         { name: "Ginger Chicken", prices: { Sm: 40, Md: 70, Lg: 130 } },
         { name: "Pepper Chicken", prices: { Sm: 40, Md: 70, Lg: 130 } },
