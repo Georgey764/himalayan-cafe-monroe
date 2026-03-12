@@ -142,13 +142,15 @@ export default function HimalayanMenu() {
       {/* Menu Sections */}
       <main className="max-w-6xl mx-auto px-6 py-16">
         {Object.entries(nestedMenu).length > 0 ? (
-          Object.entries(nestedMenu).map(([category, subGroups]) => (
+          Object.entries(nestedMenu).map(([category, subGroups], index) => (
             <MenuListing
               key={category}
               cart={cart}
               category={category}
               subGroups={subGroups}
               updateQty={updateQty}
+              defaultOpen={index == 0 ? true : false}
+              index={index}
             />
           ))
         ) : (

@@ -4,6 +4,8 @@ import "./globals.css";
 import localFont from "next/font/local";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
+const GAID = process.env.GAID;
+
 export const metadata = {
   // 1. Basic SEO (Local & Cuisine Focused)
   metadataBase: new URL(
@@ -200,7 +202,7 @@ export default function RootLayout({ children }) {
         {children}
         <Footer />
       </body>
-      <GoogleAnalytics gaId="G-03K1HXSG2K" />
+      <GoogleAnalytics gaId={GAID} />
     </html>
   );
 }

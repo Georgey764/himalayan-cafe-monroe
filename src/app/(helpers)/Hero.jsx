@@ -1,12 +1,22 @@
 "use client";
 
-import React, { useMemo } from "react";
-import { Sun, Moon, MapPin, ArrowRight, Circle } from "lucide-react";
+import React, { useMemo, useState } from "react"; // Added useState
+import {
+  Sun,
+  Moon,
+  MapPin,
+  ArrowRight,
+  Circle,
+  Phone,
+  Globe,
+  X,
+} from "lucide-react";
 import { useLiveStatus } from "../../hooks/useLiveStatus";
 import Image from "next/image";
 import Link from "next/link";
 
 const Hero = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false); // Modal State
   const liveStatus = useLiveStatus();
 
   const isWeekend = useMemo(() => {
@@ -16,6 +26,9 @@ const Hero = () => {
 
   const isLunch = liveStatus.service === "LUNCH BUFFET";
   const isDineIn = liveStatus.service === "DINE IN";
+
+  const ONLINE_ORDER_URL =
+    "https://order.online/store/-1144213/?delivery=true&hideModal=true&utm_source=gfo&rwg_token=AFd1xnGbJPa6QZnm3-nvpnpygb-3W5pIQo_YGlsUoK9LErFZeiAKfBDGaBbnd66odsgHnUfQkmnqDSSJ7RFIEuMyrfhLGaVTlA%3D%3D";
 
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden bg-primary">
@@ -73,12 +86,14 @@ const Hero = () => {
               className="ml-2 group-hover:translate-x-1 transition-transform"
             />
           </Link>
-          <a
-            href="tel:+13186003439"
-            className="w-full sm:w-auto border border-white/20 text-white px-10 py-5 rounded-full font-black text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-primary transition-all text-center"
+
+          {/* TRIGGER MODAL BUTTON */}
+          <button
+            onClick={() => setIsModalOpen(true)}
+            className="w-full sm:w-auto border border-white/20 text-white px-10 py-5 rounded-full font-black text-xs uppercase tracking-[0.2em] hover:bg-white hover:text-primary transition-all text-center cursor-pointer"
           >
             Order Now
-          </a>
+          </button>
         </div>
 
         {/* 4. Minimalist Schedule Bar */}
@@ -115,7 +130,7 @@ const Hero = () => {
             </div>
           </div>
 
-          <div className="mt-8 flex items-center justify-center space-x-4 text-white/30">
+          <div className="my-8 flex items-center justify-center space-x-4 text-white/30">
             <MapPin size={14} />
             <span className="text-[9px] font-black tracking-[0.4em] uppercase">
               Monroe, Louisiana
@@ -127,6 +142,88 @@ const Hero = () => {
           </div>
         </div>
       </div>
+
+      {/* --- MODAL OVERLAY --- */}
+      {isModalOpen && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-primary/90 backdrop-blur-md animate-in fade-in duration-300"
+          onClick={() => setIsModalOpen(false)} // Close on clicking backdrop
+        >
+          <div
+            className="relative bg-surface border border-accent/20 max-w-md w-full p-8 rounded-3xl shadow-2xl space-y-8 animate-in zoom-in-95 duration-300"
+            onClick={(e) => e.stopPropagation()} // Prevent closing when clicking modal content
+          >
+            {/* Close Button */}
+            <button
+              onClick={() => setIsModalOpen(false)}
+              className="absolute top-4 right-4 text-accent hover:text-white transition-colors"
+            >
+              <X size={24} />
+            </button>
+
+            <div className="text-center space-y-2">
+              <h3 className="text-3xl font-heading text-white">
+                How would you like to order?
+              </h3>
+              <p className="text-white/50 font-serif italic">
+                Choose your preferred method below.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              {/* Online Order Option */}
+              <a
+                href="https://order.online/store/-1144213/?delivery=true&hideModal=true&utm_source=gfo&rwg_token=AFd1xnEUoTwYsChg9yzPIbLoRJ6P4x5_Di-RGzWeSIbsTyVdnUYJisXvdlEW04vpdX0rmNMmlHdsd2OWLaP3crtG-ngiNcjKvA%3D%3D"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-between bg-accent text-primary p-6 rounded-2xl hover:bg-white transition-all group"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="bg-primary/10 p-3 rounded-full group-hover:bg-primary/20 transition-colors">
+                    <Globe size={24} />
+                  </div>
+                  <div className="text-left">
+                    <span className="block font-black text-xs uppercase tracking-widest">
+                      Order Online
+                    </span>
+                    <span className="text-[10px] opacity-70">
+                      Pickup or Delivery
+                    </span>
+                  </div>
+                </div>
+                <ArrowRight
+                  size={20}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </a>
+
+              {/* Call Order Option */}
+              <a
+                href="tel:+13186003439"
+                className="flex items-center justify-between border border-white/10 text-white p-6 rounded-2xl hover:bg-white/5 transition-all group"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="bg-white/5 p-3 rounded-full group-hover:bg-white/10 transition-colors">
+                    <Phone size={24} />
+                  </div>
+                  <div className="text-left">
+                    <span className="block font-black text-xs uppercase tracking-widest">
+                      Call to Order
+                    </span>
+                    <span className="text-[10px] opacity-70">
+                      (318) 600-3439
+                    </span>
+                  </div>
+                </div>
+                <ArrowRight
+                  size={20}
+                  className="group-hover:translate-x-1 transition-transform"
+                />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
