@@ -44,7 +44,7 @@ export default function MenuListing({
       {/* --- LEVEL 1: CATEGORY ACCORDION --- */}
       <button
         onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-        className="w-full flex items-center justify-between group py-8 px-2 border-b-2 border-white/5 transition-all"
+        className="cursor-pointer w-full flex items-center justify-between group py-8 px-2 border-b-2 border-white/5 transition-all"
       >
         <div className="flex flex-col items-start text-left">
           <span className="text-accent text-[10px] font-black tracking-[0.4em] uppercase mb-2 opacity-60">
@@ -87,12 +87,12 @@ export default function MenuListing({
                 return (
                   <div
                     key={subTitle}
-                    className="bg-white/[0.02] rounded-3xl overflow-hidden border border-white/5"
+                    className=" bg-white/[0.02] rounded-3xl overflow-hidden border border-white/5"
                   >
                     {/* --- LEVEL 2: SUB-GROUP --- */}
                     <button
                       onClick={() => toggleSection(subTitle)}
-                      className={`w-full flex items-center justify-between p-6 transition-all ${
+                      className={`cursor-pointer w-full flex items-center justify-between p-6 transition-all ${
                         isSubOpen ? "bg-white/[0.03]" : "hover:bg-white/[0.01]"
                       }`}
                     >
