@@ -173,7 +173,7 @@ export default function MenuListing({
                                     {getItemQty(item.id) === 0 ? (
                                       <button
                                         onClick={() => updateQty(item, 1)}
-                                        className="flex items-center gap-3 px-8 py-2.5 rounded-full bg-accent text-primary text-[11px] font-black uppercase tracking-widest hover:bg-white transition-all duration-300 shadow-lg active:scale-95"
+                                        className="cursor-pointer flex items-center gap-3 px-8 py-2.5 rounded-full bg-accent text-primary text-[11px] font-black uppercase tracking-widest hover:bg-white transition-all duration-300 shadow-lg active:scale-95"
                                       >
                                         <Plus size={14} strokeWidth={3} />
                                         Add to Cart
@@ -182,7 +182,7 @@ export default function MenuListing({
                                       <div className="flex items-center bg-white text-primary rounded-full shadow-xl overflow-hidden animate-in zoom-in-95 duration-200">
                                         <button
                                           onClick={() => updateQty(item, -1)}
-                                          className="px-4 py-2 hover:bg-accent transition-colors"
+                                          className="cursor-pointer px-4 py-2 hover:bg-accent transition-colors"
                                         >
                                           <Minus size={14} strokeWidth={3} />
                                         </button>
@@ -191,7 +191,7 @@ export default function MenuListing({
                                         </span>
                                         <button
                                           onClick={() => updateQty(item, 1)}
-                                          className="px-4 py-2 hover:bg-accent transition-colors"
+                                          className="cursor-pointer px-4 py-2 hover:bg-accent transition-colors"
                                         >
                                           <Plus size={14} strokeWidth={3} />
                                         </button>
